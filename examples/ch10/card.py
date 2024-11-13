@@ -4,12 +4,14 @@
 class Card:
     FACES = ['Ace', '2', '3', '4', '5', '6',
              '7', '8', '9', '10', 'Jack', 'Queen', 'King']
-    SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+    SUITS = ['hearts', 'diamonds', 'clubs', 'spades']
 
-    def __init__(self, face, suit):
+   def _init_(self, face, suit):
         """Initialize a Card with a face and suit."""
         self._face = face
         self._suit = suit
+        self.DECK = []
+
 
     @property
     def face(self):
@@ -37,6 +39,12 @@ class Card:
     def __format__(self, format):
         """Return formatted string representation."""
         return f'{str(self):{format}}'
+
+    def generador_cartas(self):
+        face = random.choice(Card.FACES)
+        suit = random.choice(Card.SUITS)
+        return Card(face,suit)
+
 
 
 
