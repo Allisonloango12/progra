@@ -57,6 +57,37 @@ class Card:
         for k in self.DECK:
            yield k
 
+%matplotlib
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+from pathlib import Path
+path = Path('.').joinpath('card_images')
+
+from deck import DeckOfCards
+deck_of_cards = DeckOfCards()
+deck_of_cards.shuffle()
+#deck_of_cards.deal_card()
+
+card = deck_of_cards.deal_card()
+str(card)
+card.image_name
+
+
+#Muestra las cartas
+figure, axes_list = plt.subplots(nrows=4, ncols=5)
+
+for axes in axes_list.ravel():
+    axes.get_xaxis().set_visible(False)
+    axes.get_yaxis().set_visible(False)
+    
+    image_name = deck_of_cards.deal_card().image_name
+    img = mpimg.imread(str(path.joinpath(image_name).resolve()))
+    axes.imshow(img)
+
+figure.tight_layout()
+
 
 
 
